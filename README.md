@@ -286,7 +286,7 @@ Feel free to fork this repository and submit pull requests.
 
 🔗 LinkedIn:https://www.linkedin.com/in/prabhu-korenor/
 
-💻 GitHub: https://github.com/YOUR_GITHUB_USERNAME
+💻 GitHub:https://github.com/Prabhukorenor
 
 ---
 

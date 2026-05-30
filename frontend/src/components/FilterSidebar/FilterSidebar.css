@@ -1,0 +1,126 @@
+.filter-sidebar {
+  width: 100%;
+  min-width: 0;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: minmax(240px, 1.1fr) minmax(220px, 0.85fr) auto;
+  gap: 16px;
+  align-items: end;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.filter-sidebar__head {
+  grid-column: 1 / -1;
+  align-self: start;
+}
+
+.filter-sidebar__head p {
+  margin: 0 0 7px;
+  color: #0f766e;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.filter-sidebar__head h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.45rem;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.filter-sidebar .field-group {
+  min-width: 0;
+}
+
+.filter-sidebar .field-group label {
+  color: #334155;
+  font-size: 0.86rem;
+}
+
+.filter-sidebar__input-wrap {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 16px;
+  background: #f8fafc;
+  color: #64748b;
+  transition: all 0.3s ease;
+}
+
+.filter-sidebar__input-wrap:focus-within {
+  border-color: rgba(30, 58, 138, 0.42);
+  box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.08);
+}
+
+.filter-sidebar__input-wrap input {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.filter-sidebar select {
+  height: 52px;
+  border-radius: 16px;
+  background: #f8fafc;
+}
+
+.filter-sidebar__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.filter-sidebar__actions .btn {
+  min-height: 52px;
+  padding-inline: 18px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.filter-sidebar__actions .btn-primary {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  box-shadow: 0 14px 30px rgba(30, 58, 138, 0.22);
+}
+
+@media (max-width: 1180px) {
+  .filter-sidebar {
+    grid-template-columns: minmax(220px, 1fr) minmax(190px, 0.8fr);
+  }
+
+  .filter-sidebar__actions {
+    grid-column: 1 / -1;
+  }
+
+  .filter-sidebar__actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
+  .filter-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .filter-sidebar__head h2 {
+    white-space: normal;
+  }
+
+  .filter-sidebar__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

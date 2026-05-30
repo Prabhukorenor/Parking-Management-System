@@ -1,0 +1,121 @@
+
+.loginpage {
+  background: linear-gradient(180deg, #274b74 0%, #155976 52%, #1c90b3 100%);
+}
+
+/* CENTER CONTENT */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* CARD */
+.auth-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* SMALL TITLE */
+.auth-card__eyebrow {
+  font-size: 13px;
+  font-weight: bold;
+  color: #1c7c74;
+  margin-bottom: 5px;
+}
+
+/* MAIN TITLE */
+.auth-card h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+/* INPUT GROUP */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* INPUT FIELD */
+input {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* FOCUS EFFECT */
+input:focus {
+  border-color: #f28a1a;
+  box-shadow: 0 0 0 3px rgba(242, 138, 26, 0.2);
+}
+
+/* PASSWORD FIELD */
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 40px;
+}
+
+/* EYE ICON */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 38px;
+  cursor: pointer;
+  color: #64748b;
+}
+
+/* BUTTON */
+button {
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  background-color: #1c7c74;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* BUTTON HOVER */
+button:hover {
+  background-color: #155e57;
+  transform: translateY(-2px);
+}
+
+.forgot-link {
+  color: blue;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* COMMON LINK STYLE (Register + Login links) */
+.auth-link {
+  color: blue;       
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s ease;
+  cursor: pointer;
+
+}
+
+/* HOVER EFFECT */
+.auth-link:hover {
+  text-decoration: underline;
+}

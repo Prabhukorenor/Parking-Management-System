@@ -1,0 +1,51 @@
+.owner-forms {
+  display: grid;
+  gap: 24px;
+}
+
+.owner-form {
+  padding: 22px;
+  display: grid;
+  gap: 18px;
+}
+
+.owner-form h2 {
+  margin: 0;
+}
+
+.owner-form__checks {
+  display: grid;
+  gap: 10px;
+}
+
+.owner-form__checks--inline {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.owner-form__checks label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.owner-form__checks label:hover {
+  background-color: rgba(52, 152, 219, 0.05);
+}
+
+.owner-form__checks input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--brand-primary, #3498db);
+}
+
+.owner-form__checks label span {
+  font-size: 0.95rem;
+  color: var(--ink-900, #112132);
+}

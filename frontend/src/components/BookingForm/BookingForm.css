@@ -1,0 +1,163 @@
+.booking-form {
+  padding: 24px;
+  display: grid;
+  gap: 18px;
+}
+
+.booking-form__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.booking-form__eyebrow {
+  margin: 0 0 6px;
+  color: var(--brand-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+}
+
+.booking-form__head h2 {
+  margin: 0;
+}
+
+.booking-form__price {
+  display: grid;
+  text-align: right;
+}
+
+.calendar-field {
+  position: relative;
+}
+
+.calendar-input-wrapper {
+  position: relative;
+}
+
+.calendar-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.calendar-input:hover {
+  border-color: #999;
+}
+
+.calendar-input:focus {
+  outline: none;
+  border-color: var(--brand-primary, #3498db);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.calendar-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  margin-top: 8px;
+}
+
+.billing-details {
+  padding: 24px;
+  display: grid;
+  gap: 24px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.billing-details__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 10;
+  padding-bottom: 12px;
+}
+
+.billing-details__head h2 {
+  margin: 0;
+}
+
+.billing-details__content {
+  display: grid;
+  gap: 16px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  min-height: auto;
+}
+
+.billing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.billing-row:last-child {
+  border-bottom: none;
+}
+
+.billing-row span {
+  color: #666;
+  font-weight: 500;
+}
+
+.billing-row strong {
+  font-weight: 600;
+  color: #333;
+}
+
+.billing-divider {
+  height: 2px;
+  background: #ddd;
+  margin: 8px 0;
+}
+
+.billing-total {
+  background: #e8f5e9;
+  border: 2px solid var(--success);
+  border-radius: 6px;
+  padding: 16px !important;
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.billing-total span {
+  font-size: 1.1em;
+  color: #333;
+  font-weight: 600;
+}
+
+.billing-total strong {
+  font-size: 1.4em;
+  color: var(--success);
+  font-weight: 700;
+}
+
+.billing-details button {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 12px;
+}

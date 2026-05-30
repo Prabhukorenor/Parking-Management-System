@@ -1,0 +1,125 @@
+:root {
+  color: var(--ink-900);
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.18), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(251, 191, 36, 0.18), transparent 25%),
+    var(--paper);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* CSS for Toast popup*/
+.premium-toast {
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-weight: 500;
+  color: #fff;
+  background: #1f2937; /* dark base */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  border-left: 15px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* SUCCESS */
+.Toastify__toast--success.premium-toast {
+  border-left-color: #22c55e;
+}
+
+/* ERROR */
+.Toastify__toast--error.premium-toast {
+  border-left-color: #ef4444;
+}
+
+/* WARNING */
+.Toastify__toast--warning.premium-toast {
+  border-left-color: #facc15;
+}
+
+/* INFO */
+.Toastify__toast--info.premium-toast {
+  border-left-color: #38bdf8;
+}
+
+/* ANIMATED BOTTOM LINE */
+.premium-toast::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: currentColor;
+  animation: progressLine 3s linear forwards;
+  opacity: 0.7;
+}
+
+/* COLOR MATCH FOR LINE */
+.Toastify__toast--success.premium-toast::after {
+  background: #22c55e;
+}
+
+.Toastify__toast--error.premium-toast::after {
+  background: #ef4444;
+}
+
+.Toastify__toast--warning.premium-toast::after {
+  background: #facc15;
+}
+
+.Toastify__toast--info.premium-toast::after {
+  background: #38bdf8;
+}
+
+.Toastify__toast-icon {
+  margin-right: 10px;
+}
+/* ANIMATION */
+@keyframes progressLine {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}

@@ -1,0 +1,34 @@
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status-badge--approved,
+.status-badge--paid,
+.status-badge--completed,
+.status-badge--booked,
+.status-badge--refunded,
+.status-badge--available,
+.status-badge--true {
+  background: rgba(21, 128, 61, 0.12);
+  color: var(--success);
+}
+
+.status-badge--pending,
+.status-badge--active,
+.status-badge--partial_refund {
+  background: rgba(245, 158, 11, 0.18);
+  color: #9a6700;
+}
+
+.status-badge--cancelled,
+.status-badge--failed,
+.status-badge--unavailable,
+.status-badge--false {
+  background: rgba(220, 38, 38, 0.12);
+  color: var(--danger);
+}

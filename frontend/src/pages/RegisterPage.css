@@ -1,0 +1,99 @@
+.registerpage{
+   background: linear-gradient(180deg, #274b74 0%, #155976 52%, #1c90b3 100%);
+}
+
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.auth-card {
+  width: 600px;
+  padding: 30px;
+  border-radius: 70px;
+  background-color:#f8fafcd9;;
+  box-shadow: 0 10px 30px rgba(10, 8, 8, 0.516);
+}
+
+/* Heading */
+.auth-card__eyebrow {
+  color: #1c7c74;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.auth-card h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 3px solid black;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #f28a1a; 
+  box-shadow: 0 0 0 2px rgba(7, 184, 197, 0.842);
+}
+input:hover,
+select:hover {
+   border-color: #94a3b8; 
+}
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  background-color: #1c7c74;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background-color: #155e57;
+  transform: translateY(-2px);
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 40px; 
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 45px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #64748b;
+}
+
+/* Password row for side-by-side password fields */
+.password-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  grid-column: 1 / -1;
+}
+
+/* Role field with reduced width */
+.role-field {
+  grid-column: 1 / -1;
+  width: 95%;
+}
+
+

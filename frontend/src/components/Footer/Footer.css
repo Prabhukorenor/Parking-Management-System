@@ -1,0 +1,122 @@
+.home-footer {
+  padding:25px;
+  background: #15274a;
+  color: #ffffff;
+}
+
+.home-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(100px, 1.45fr) minmax(100px, 0.9fr) minmax(100px, 0.8fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.home-footer h3 {
+  margin: 0 0 18px;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.home-footer p {
+  margin: 0 0 10px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.home-footer__column {
+  min-width: 0;
+}
+
+.home-footer__stack {
+  display: grid;
+  gap: 20px;
+}
+
+.home-footer__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.home-footer__item svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  font-size: 1.4rem;
+}
+
+.home-footer__item--top svg {
+  color: #ff2e2e;
+}
+
+.home-footer__item:not(.home-footer__item--top) svg {
+  color: #ffffff;
+}
+
+.home-footer__item a {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.home-footer__item a:hover,
+.home-footer__links a:hover {
+  color: #ffffff;
+}
+
+.home-footer__links {
+  display: grid;
+  gap: 12px;
+}
+
+.home-footer__links a {
+  color: rgba(255, 255, 255, 0.9);
+  width: fit-content;
+}
+.home-footer__links a:hover{
+  color: #ffc857;;
+}
+.home-footer__socials {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+}
+
+.home-footer__socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  line-height: 1;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+
+.home-footer__socials a:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.home-footer__socials a[aria-label='Twitter / X'] {
+  color: #1da1f2;
+}
+
+.home-footer__socials a[aria-label='Instagram'] {
+  color: #ff2d7d;
+}
+
+.home-footer__socials a[aria-label='Facebook'] {
+  color: #1877f2;
+}
+
+.home-footer__socials a[aria-label='WhatsApp'] {
+  color: #25d366;
+}
+
+.home-footer__bottom {
+  margin-top: 5px;
+  padding-top: 20px;
+  border-top: 2px solid rgba(255, 255, 255, 0.16);
+  text-align: center;
+}
+
+.home-footer__bottom p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.76);
+}

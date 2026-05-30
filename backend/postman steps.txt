@@ -1,0 +1,555 @@
+Use this Postman flow with base URL:
+
+http://localhost:8080
+
+Set one collection variable:
+
+baseUrl = http://localhost:8080
+Set auth token variables after login:
+
+adminToken
+ownerToken
+customerToken
+1. Auth Setup
+
+POST {{baseUrl}}/api/auth/register
+For Owner:
+{
+  "name": "Parking Owner",
+  "email": "owner1@example.com",
+  "password": "Owner123",
+  "role": "OWNER"
+}
+POST {{baseUrl}}/api/auth/register
+For Customer:
+{
+  "name": "Customer User",
+  "email": "customer1@example.com",
+  "password": "Customer123",
+  "role": "CUSTOMER"
+}
+POST {{baseUrl}}/api/auth/login
+Admin login:
+{
+  "email": "admin@pms.com",
+  "password": "Admin@123"
+}
+POST {{baseUrl}}/api/auth/login
+Owner login:
+{
+  "email": "owner1@example.com",
+  "password": "Owner123"
+}
+POST {{baseUrl}}/api/auth/login
+Customer login:
+{
+  "email": "customer1@example.com",
+  "password": "Customer123"
+}
+Save returned JWTs into adminToken, ownerToken, customerToken.
+
+2. Owner Flow
+
+POST {{baseUrl}}/api/locations
+Header:
+Authorization: Bearer {{ownerToken}}
+{
+  "street": "12 MG Road",
+  "area": "Central Market",
+  "city": "Bangalore",
+  "state": "Karnataka",
+  "country": "India",
+  "pincode": "560001"
+}
+POST {{baseUrl}}/api/uploads/images
+Header:
+Authorization: Bearer {{ownerToken}}
+Body type: form-data
+key: files type File select one or more images
+POST {{baseUrl}}/api/parking
+Header:
+Authorization: Bearer {{ownerToken}}
+Use uploaded image URLs from previous response:
+{
+  "locationId": 1,
+  "title": "City Center Parking",
+  "description": "Safe parking with guards and CCTV",
+  "pricePerDay": 500,
+  "pricePerHour": 50,
+  "images": [
+    "/uploads/sample1.jpg"
+  ],
+  "amenities": [
+    "CCTV surveillance",
+    "Security guards",
+    "EV charging facility"
+  ],
+  "vehicleTypes": [
+    "CAR",
+    "BIKE"
+  ],
+  "availableFrom": "06:00:00",
+  "availableTo": "23:00:00"
+}
+POST {{baseUrl}}/api/parking/1/slots
+Header:
+Authorization: Bearer {{ownerToken}}
+{
+  "slotNumber": "A-101",
+  "slotType": "COVERED",
+  "isAvailable": true
+}
+POST {{baseUrl}}/api/parking/1/slots
+{
+  "slotNumber": "A-102",
+  "slotType": "OPEN",
+  "isAvailable": true
+}
+GET {{baseUrl}}/api/parking/1/slots
+Header:
+Authorization: Bearer {{ownerToken}}
+3. Admin Flow
+
+GET {{baseUrl}}/api/admin/users
+Header:
+Authorization: Bearer {{adminToken}}
+
+GET {{baseUrl}}/api/admin/analytics
+Header:
+Authorization: Bearer {{adminToken}}
+
+PUT {{baseUrl}}/api/admin/parking/1/approve
+Header:
+Authorization: Bearer {{adminToken}}
+
+GET {{baseUrl}}/api/parking
+Public endpoint, no auth needed.
+This confirms approved parking is visible.
+
+4. Customer Flow
+
+GET {{baseUrl}}/api/locations
+
+GET {{baseUrl}}/api/parking
+Optional filter example:
+{{baseUrl}}/api/parking?city=Bangalore&vehicleType=CAR&amenities=CCTV surveillance&amenities=EV charging facility
+
+GET {{baseUrl}}/api/parking/1
+This now shows parking details, slots, and amenity charges before booking.
+
+POST {{baseUrl}}/api/bookings
+Header:
+Authorization: Bearer {{customerToken}}
+
+{
+  "parkingId": 1,
+  "slotId": 1,
+  "startDate": "2026-05-01T10:00:00",
+  "endDate": "2026-05-01T18:00:00",
+  "paymentStatus": "PAID"
+}
+GET {{baseUrl}}/api/bookings/user
+Header:
+Authorization: Bearer {{customerToken}}
+
+DELETE {{baseUrl}}/api/bookings/1
+Header:
+Authorization: Bearer {{customerToken}}
+
+5. Review Flow
+
+To review, use a booking whose endDate is already in the past.
+
+POST {{baseUrl}}/api/bookings
+Header:
+Authorization: Bearer {{customerToken}}
+{
+  "parkingId": 1,
+  "slotId": 2,
+  "startDate": "2026-04-28T09:00:00",
+  "endDate": "2026-04-28T12:00:00",
+  "paymentStatus": "PAID"
+}
+POST {{baseUrl}}/api/reviews
+Header:
+Authorization: Bearer {{customerToken}}
+{
+  "parkingId": 1,
+  "rating": 5,
+  "comment": "Very secure and clean parking."
+}
+GET {{baseUrl}}/api/parking/1/reviews
+6. Admin Review Moderation
+
+DELETE {{baseUrl}}/api/admin/reviews/1
+Header:
+Authorization: Bearer {{adminToken}}
+Good test cases
+
+Owner tries to create parking without token: should fail
+Customer tries to approve parking: should fail
+Double-book same slot for same time: should fail
+Review without completed booking: should fail
+Upload non-image file: should fail
+
+
+[
+    {
+        "id": 1,
+        "parkingId": 1,
+        "parkingTitle": "City Center Parking",
+        "slotId": 1,
+        "slotNumber": "A-101",
+        "startDate": "2026-05-01T10:00:00",
+        "endDate": "2026-05-01T18:00:00",
+        "basePrice": 400.00,
+        "amenityCharges": 360.00,
+        "serviceFee": 49.00,
+        "totalPrice": 809.00,
+        "status": "BOOKED",
+        "payment": {
+            "id": 1,
+            "amount": 809.00,
+            "status": "PAID"
+        }
+    },
+    {
+        "id": 2,
+        "parkingId": 1,
+        "parkingTitle": "City Center Parking",
+        "slotId": 1,
+        "slotNumber": "A-101",
+        "startDate": "2026-04-28T09:00:00",
+        "endDate": "2026-04-28T11:00:00",
+        "basePrice": 100.00,
+        "amenityCharges": 90.00,
+        "serviceFee": 49.00,
+        "totalPrice": 239.00,
+        "status": "BOOKED",
+        "payment": {
+            "id": 2,
+            "amount": 239.00,
+            "status": "PAID"
+        }
+    }
+]
+
+
+
+
+Use this final Postman testing flow for the whole system with Admin, Owner, and Customer.
+
+Base URL:
+http://localhost:8080
+
+Create these Postman variables:
+
+baseUrl = http://localhost:8080
+adminToken
+ownerToken
+customerToken
+parkingId
+slotId
+reviewId
+1. Auth
+
+POST {{baseUrl}}/api/auth/register
+Register Owner
+{
+  "name": "Parking Owner",
+  "email": "owner1@example.com",
+  "password": "Owner123",
+  "role": "OWNER"
+}
+POST {{baseUrl}}/api/auth/register
+Register Customer
+{
+  "name": "Customer User",
+  "email": "customer1@example.com",
+  "password": "Customer123",
+  "role": "CUSTOMER"
+}
+POST {{baseUrl}}/api/auth/login
+Admin login
+{
+  "email": "admin@pms.com",
+  "password": "Admin@123"
+}
+Save token as adminToken.
+
+POST {{baseUrl}}/api/auth/login
+Owner login
+{
+  "email": "owner1@example.com",
+  "password": "Owner123"
+}
+Save token as ownerToken.
+
+POST {{baseUrl}}/api/auth/login
+Customer login
+{
+  "email": "customer1@example.com",
+  "password": "Customer123"
+}
+Save token as customerToken.
+
+2. Owner Flow
+
+POST {{baseUrl}}/api/locations
+Header:
+Authorization: Bearer {{ownerToken}}
+{
+  "street": "12 MG Road",
+  "area": "Central Market",
+  "city": "Bangalore",
+  "state": "Karnataka",
+  "country": "India",
+  "pincode": "560001"
+}
+GET {{baseUrl}}/api/locations
+
+POST {{baseUrl}}/api/uploads/images
+Header:
+Authorization: Bearer {{ownerToken}}
+Body type: form-data
+
+key: files
+type: File
+attach one or more images
+Expected:
+
+{
+  "imageUrls": [
+    "/uploads/....jpg"
+  ]
+}
+POST {{baseUrl}}/api/parking
+Header:
+Authorization: Bearer {{ownerToken}}
+{
+  "locationId": 1,
+  "title": "City Center Parking",
+  "description": "Safe parking with guards and CCTV",
+  "pricePerDay": 500,
+  "pricePerHour": 50,
+  "images": [
+    "/uploads/your-image.jpg"
+  ],
+  "amenities": [
+    "CCTV surveillance",
+    "Security guards",
+    "EV charging facility"
+  ],
+  "vehicleTypes": [
+    "CAR",
+    "BIKE"
+  ],
+  "availableFrom": "06:00:00",
+  "availableTo": "23:00:00"
+}
+Save returned id as parkingId.
+
+POST {{baseUrl}}/api/parking/{{parkingId}}/slots
+Header:
+Authorization: Bearer {{ownerToken}}
+{
+  "slotNumber": "A-101",
+  "slotType": "COVERED",
+  "isAvailable": true
+}
+Save returned id as slotId.
+
+POST {{baseUrl}}/api/parking/{{parkingId}}/slots
+Header:
+Authorization: Bearer {{ownerToken}}
+{
+  "slotNumber": "A-102",
+  "slotType": "OPEN",
+  "isAvailable": true
+}
+GET {{baseUrl}}/api/parking/{{parkingId}}/slots
+Header:
+Authorization: Bearer {{ownerToken}}
+3. Admin Flow
+
+GET {{baseUrl}}/api/admin/users
+Header:
+Authorization: Bearer {{adminToken}}
+
+GET {{baseUrl}}/api/admin/analytics
+Header:
+Authorization: Bearer {{adminToken}}
+
+PUT {{baseUrl}}/api/admin/parking/{{parkingId}}/approve
+Header:
+Authorization: Bearer {{adminToken}}
+
+Expected:
+parking becomes approved.
+
+4. Public and Discovery Flow
+
+GET {{baseUrl}}/api/parking
+
+GET {{baseUrl}}/api/parking/{{parkingId}}
+
+Expected:
+
+parking details
+slot list
+amenityCharges list with chargePerHour and chargePerDay
+GET {{baseUrl}}/api/parking?city=Bangalore
+
+GET {{baseUrl}}/api/parking?vehicleType=CAR
+
+GET {{baseUrl}}/api/parking?amenities=CCTV surveillance&amenities=EV charging facility
+
+5. Customer Booking Flow
+
+POST {{baseUrl}}/api/bookings
+Header:
+Authorization: Bearer {{customerToken}}
+Future booking
+{
+  "parkingId": {{parkingId}},
+  "slotId": {{slotId}},
+  "startDate": "2026-05-01T10:00:00",
+  "endDate": "2026-05-01T18:00:00",
+  "paymentStatus": "PAID"
+}
+Expected:
+
+status = BOOKED
+response contains:
+basePrice
+amenityCharges
+serviceFee
+totalPrice
+GET {{baseUrl}}/api/bookings/user
+Header:
+Authorization: Bearer {{customerToken}}
+Expected:
+future booking still shows BOOKED.
+
+6. Review Test Flow
+
+POST {{baseUrl}}/api/bookings
+Header:
+Authorization: Bearer {{customerToken}}
+Past booking
+{
+  "parkingId": {{parkingId}},
+  "slotId": {{slotId}},
+  "startDate": "2026-04-20T10:00:00",
+  "endDate": "2026-04-20T12:00:00",
+  "paymentStatus": "PAID"
+}
+Expected now:
+response should show:
+
+"status": "COMPLETED"
+GET {{baseUrl}}/api/bookings/user
+Header:
+Authorization: Bearer {{customerToken}}
+Expected:
+past booking should be COMPLETED.
+
+POST {{baseUrl}}/api/reviews
+Header:
+Authorization: Bearer {{customerToken}}
+{
+  "parkingId": {{parkingId}},
+  "rating": 5,
+  "comment": "Very secure and clean parking."
+}
+Expected:
+201 Created
+
+Save returned id as reviewId.
+
+GET {{baseUrl}}/api/parking/{{parkingId}}/reviews
+Expected:
+your review should appear.
+
+POST {{baseUrl}}/api/reviews
+Header:
+Authorization: Bearer {{customerToken}}
+Try duplicate review
+{
+  "parkingId": {{parkingId}},
+  "rating": 4,
+  "comment": "Second review test"
+}
+Expected:
+400 Bad Request
+with:
+You have already reviewed this parking space.
+
+7. Cancel Booking Flow
+
+DELETE {{baseUrl}}/api/bookings/1
+Header:
+Authorization: Bearer {{customerToken}}
+Expected:
+204 No Content
+
+Then:
+29. GET {{baseUrl}}/api/bookings/user
+
+Expected:
+that booking status should be CANCELLED.
+
+8. Admin Review Moderation
+
+DELETE {{baseUrl}}/api/admin/reviews/{{reviewId}}
+Header:
+Authorization: Bearer {{adminToken}}
+Expected:
+204 No Content
+
+GET {{baseUrl}}/api/parking/{{parkingId}}/reviews
+Expected:
+deleted review should no longer appear.
+
+9. Negative Tests
+
+Customer tries admin endpoint
+GET {{baseUrl}}/api/admin/users
+Header:
+Authorization: Bearer {{customerToken}}
+Expected:
+403 Forbidden
+
+Owner tries booking endpoint
+POST {{baseUrl}}/api/bookings
+Expected:
+403 Forbidden
+
+Customer tries upload endpoint
+POST {{baseUrl}}/api/uploads/images
+Expected:
+403 Forbidden
+
+Double booking same slot same time
+Create another booking using same slotId and overlapping dates.
+Expected:
+400 Bad Request
+with slot conflict message.
+
+Review without completed booking
+Use a new customer account and try:
+POST {{baseUrl}}/api/reviews
+Expected:
+400 Bad Request
+with:
+Only users with a completed booking can review this parking space.
+
+Key expected statuses
+
+future booking: BOOKED
+past paid booking: COMPLETED
+cancelled booking: CANCELLED
+If you want, I can next convert this into:
+
+a Postman collection JSON structure
+or a very clean table format with Method | Endpoint | Auth | Body | Expected Result

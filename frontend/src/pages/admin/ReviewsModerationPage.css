@@ -1,0 +1,70 @@
+.review-row {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-row__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.review-row__head strong {
+  display: block;
+  font-size: 1.1rem;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.review-row__head p {
+  margin: 0;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.review-row__stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.review-row__stars svg {
+  font-size: 1rem;
+}
+
+.review-row__stars .star-filled {
+  color: #f59e0b;
+}
+
+.review-row__stars .star-empty {
+  color: #e2e8f0;
+}
+
+.review-row__comment {
+  margin: 0;
+  color: #334155;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.review-row .btn-danger {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  min-height: unset;
+  background: #ef4444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.review-row .btn-danger:hover {
+  background: #dc2626;
+}

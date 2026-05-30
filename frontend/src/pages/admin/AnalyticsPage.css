@@ -1,0 +1,162 @@
+/* Base Card Styles */
+article.analytics-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  border-radius: 24px !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Typography */
+article.analytics-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  opacity: 0.85; /* Slightly muted */
+  z-index: 2;
+}
+
+article.analytics-card strong {
+  font-size: 2.25rem;
+  font-family: var(--font-display, "Inter", sans-serif);
+  font-weight: 700;
+  line-height: 1.1;
+  z-index: 2;
+}
+
+/* Interactive Hover States */
+article.analytics-card.clickable-card {
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease !important;
+}
+
+article.analytics-card.clickable-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.04) !important;
+  filter: brightness(1.05);
+}
+
+/* Base Glassmorphism effect via ::before pseudo-element */
+article.analytics-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --- Specific Card Gradients & Colors --- */
+
+/* Total Users */
+article.analytics-card--totalUsers {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe) !important;
+}
+article.analytics-card--totalUsers strong,
+article.analytics-card--totalUsers p {
+  color: #1d4ed8 !important;
+}
+
+/* Total Owners */
+article.analytics-card--totalOwners {
+  background: linear-gradient(135deg, #ede9fe, #ddd6fe) !important;
+}
+article.analytics-card--totalOwners strong,
+article.analytics-card--totalOwners p {
+  color: #7c3aed !important;
+}
+
+/* Total Customers */
+article.analytics-card--totalCustomers {
+  background: linear-gradient(135deg, #cffafe, #a5f3fc) !important;
+}
+article.analytics-card--totalCustomers strong,
+article.analytics-card--totalCustomers p {
+  color: #0f766e !important;
+}
+
+/* Total Parking Spaces */
+article.analytics-card--totalParkingSpaces {
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe) !important;
+}
+article.analytics-card--totalParkingSpaces strong,
+article.analytics-card--totalParkingSpaces p {
+  color: #4338ca !important;
+}
+
+/* Approved Parking Spaces */
+article.analytics-card--approvedParkingSpaces {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0) !important;
+}
+article.analytics-card--approvedParkingSpaces strong,
+article.analytics-card--approvedParkingSpaces p {
+  color: #15803d !important;
+}
+
+/* Pending Parking Spaces */
+article.analytics-card--pendingParkingSpaces {
+  background: linear-gradient(135deg, #fef3c7, #fde68a) !important;
+}
+article.analytics-card--pendingParkingSpaces strong,
+article.analytics-card--pendingParkingSpaces p {
+  color: #b45309 !important;
+}
+
+/* Active Bookings */
+article.analytics-card--activeBookings {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0) !important;
+}
+article.analytics-card--activeBookings strong,
+article.analytics-card--activeBookings p {
+  color: #047857 !important;
+}
+
+/* Cancelled Bookings */
+article.analytics-card--cancelledBookings {
+  background: linear-gradient(135deg, #fee2e2, #fecaca) !important;
+}
+article.analytics-card--cancelledBookings strong,
+article.analytics-card--cancelledBookings p {
+  color: #b91c1c !important;
+}
+
+/* Total Reviews */
+article.analytics-card--totalReviews {
+  background: linear-gradient(135deg, #ffedd5, #fed7aa) !important;
+}
+article.analytics-card--totalReviews strong,
+article.analytics-card--totalReviews p {
+  color: #c2410c !important;
+}
+
+/* Total Revenue */
+article.analytics-card--totalRevenue {
+  background: linear-gradient(135deg, #ccfbf1, #99f6e4) !important;
+}
+article.analytics-card--totalRevenue strong,
+article.analytics-card--totalRevenue p {
+  color: #0f766e !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  article.analytics-card {
+    padding: 20px;
+  }
+  
+  article.analytics-card strong {
+    font-size: 2rem;
+  }
+}

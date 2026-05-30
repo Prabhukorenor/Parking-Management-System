@@ -1,0 +1,86 @@
+.slot-picker {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.slot-picker__item {
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  border: 2px solid #27ae60;
+  border-radius: 18px;
+  padding: 14px;
+  background: #d5f4e6;
+  color: #145a32;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.slot-picker__item strong {
+  color: #145a32;
+  font-size: 1.1rem;
+}
+
+.slot-picker__item span {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.slot-picker__item small {
+  color: #1e8449;
+  font-weight: 600;
+}
+
+.slot-picker__item:hover:not(:disabled) {
+  background: #d5f4e6;
+  border-color: #27ae60;
+}
+
+.slot-picker__item--active {
+  border-color: #1e40af;
+  background: #dbeafe;
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.3);
+  color: #1e40af;
+}
+
+.slot-picker__item--active strong {
+  color: #1e40af;
+}
+
+.slot-picker__item--active span {
+  color: #1e40af;
+}
+
+.slot-picker__item--active small {
+  color: #1e40af;
+}
+
+.slot-picker__item--active:hover {
+  background: #dbeafe;
+  border-color: #1e40af;
+}
+
+.slot-picker__item:disabled {
+  cursor: not-allowed;
+  border: 2px solid #c0392b;
+  background: #fadbd8;
+  color: #78260f;
+}
+
+.slot-picker__item:disabled strong {
+  color: #78260f;
+}
+
+.slot-picker__item:disabled span {
+  color: #c0392b;
+}
+
+.slot-picker__item:disabled small {
+  color: #a93226;
+}
+
+.slot-picker__item:disabled:hover {
+  background: #fadbd8;
+  border-color: #c0392b;
+}

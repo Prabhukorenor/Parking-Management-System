@@ -1,0 +1,42 @@
+# =========================
+# FRONTEND (React)
+# =========================
+frontend/node_modules/
+frontend/build/
+frontend/.env
+
+# =========================
+# BACKEND (Spring Boot)
+# =========================
+backend/target/
+backend/.mvn/
+*.class
+*.jar
+*.war
+
+# =========================
+# IDE Files
+# =========================
+.vscode/
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Uploads (optional)
+# =========================
+uploads/*
+!uploads/.gitkeep
